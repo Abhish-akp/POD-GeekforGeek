@@ -1,0 +1,55 @@
+//{ Driver Code Starts
+//Initial template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+//User function template for C++
+
+
+class Solution
+{
+    public:
+    int lcs(string a, string b,vector<vector<int>>&dp,int i,int j)
+    {
+        if(i==0 || j==0)
+        {
+            return 0;
+        }
+        if(dp[i][j] != -1) return dp[i][j];
+        if(a[i-1] == b[j-1]) return dp[i][j]= 1 + lcs(a,b,dp,i-1,j-1);
+        return dp[i][j] = max(lcs(a,b,dp,i-1,j),lcs(a,b,dp,i,j-1));
+    }
+    int shortestCommonSupersequence(string a, string b, int m, int n)
+    {
+        n = a.size() ,m = b.size();
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        return m+n-lcs(a,b,dp,n,m);
+    }
+};
+
+//{ Driver Code Starts.
+
+int main()
+{   
+    
+    int t;
+    
+    //taking total testcases
+    cin >> t;
+    while(t--){
+    string X, Y;
+    //taking String X and Y
+	cin >> X >> Y;
+	
+	//calling function shortestCommonSupersequence()
+	Solution obj;
+	cout << obj.shortestCommonSupersequence(X, Y, X.size(), Y.size())<< endl;
+    }
+	return 0;
+}
+
+
+// } Driver Code Ends
