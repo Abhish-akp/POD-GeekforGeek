@@ -1,0 +1,55 @@
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution{
+public:
+    vector<int> pattern(int N){
+        vector<int>vec;
+        int key=N;
+        pat_neg(vec,N,key);
+        return vec;
+        
+    }
+private:
+    void pat_neg(vector<int>&vec,int N,int K){
+        if(N<=0){
+            pat_pos(vec,N,K);
+            return;
+        }
+        vec.push_back(N);
+        pat_neg(vec,N-5,K);
+    }
+    void pat_pos(vector<int>&vec,int N,int k){
+        if(k==N){
+            vec.push_back(N);
+            return;
+        }
+        vec.push_back(N);
+        pat_pos(vec,N+5,k);
+    }
+};
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int N;
+        cin>>N;
+        
+        Solution ob;
+        vector<int> ans = ob.pattern(N);
+        for(int u: ans)
+            cout<<u<<" ";
+        cout<<"\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
